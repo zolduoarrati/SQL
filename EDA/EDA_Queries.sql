@@ -20,3 +20,6 @@ SELECT count(l.UserId) as Total_Users,[Country]
   FROM [StackOverflow].[dbo].[Location] l
   where l.Country = 'Britain'
   group by l.Country
+  
+  --SQL sample
+ select top (664) u.id,u.Location from users u TABLESAMPLE (664 ROWS)
