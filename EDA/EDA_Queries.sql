@@ -23,3 +23,11 @@ SELECT count(l.UserId) as Total_Users,[Country]
   
   --SQL sample
  select top (664) u.id,u.Location from users u TABLESAMPLE (664 ROWS)
+ 
+ ---SQL Sampling NEW
+  SELECT u.id,u.Location FROM users u
+  WHERE (ABS(CAST(
+  (BINARY_CHECKSUM(*) *
+  RAND()) as int)) % 100) < 10
+  ORDER BY RAND()
+  OFFSET 0 ROWS FETCH FIRST 666 ROWS ONLY;
