@@ -31,3 +31,17 @@ SELECT count(l.UserId) as Total_Users,[Country]
   RAND()) as int)) % 100) < 10
   ORDER BY RAND()
   OFFSET 0 ROWS FETCH FIRST 666 ROWS ONLY;
+  
+  
+--SQL Query to find missing rows between two related tables  
+  SELECT * FROM [StackOverflow].[dbo].[Location_Google] g WHERE NOT EXISTS 
+   (SELECT * FROM [StackOverflow].[dbo].[Location_Nominatim] n WHERE n.Id = g.Id)
+   
+   SELECT A.ABC_ID, A.VAL FROM A WHERE VAL NOT IN 
+    (SELECT VAL FROM B WHERE B.ABC_ID = A.ABC_ID)
+	
+	SELECT A.ABC_ID, A.VAL FROM A WHERE VAL NOT IN 
+    (SELECT VAL FROM B WHERE B.ABC_ID = A.ABC_ID)
+	
+	SELECT A.ABC_ID, A.VAL LEFT OUTER JOIN B 
+    ON A.ABC_ID = B.ABC_ID AND A.VAL = B.VAL FROM A WHERE B.VAL IS NULL
